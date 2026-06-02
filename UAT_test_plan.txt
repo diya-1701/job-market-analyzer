@@ -1,0 +1,170 @@
+
+UAT TEST PLAN
+=============
+Project      : AI-Assisted Job Market Analyzer
+Prepared by  : Diya Gupta
+Date         : June 2026
+Version      : 1.0
+Tool         : Power BI Dashboard (job_market_analyzer.pbix)
+
+OBJECTIVE
+---------
+Verify that all dashboard visuals display correctly, filters work as expected,
+and data matches the source CSV files.
+
+TEST CASES
+----------
+
+PAGE 1 — MARKET OVERVIEW
+-------------------------
+TC-01 | Top Job Titles bar chart loads without errors
+       Expected : 20 job titles displayed, sorted descending by posting count
+       Result   : [~] Pass  [ ] Fail
+       Notes    :
+
+TC-02 | Monthly trend line chart displays all months
+       Expected : Continuous line from earliest to latest month, no gaps
+       Result   : [ ] Pass  [~ ] Fail
+       Notes    :
+
+TC-03 | Remote vs on-site donut chart shows 3 segments
+       Expected : Remote / On-site / Not specified segments visible with %
+       Result   : [ ] Pass  [~ ] Fail
+       Notes    :
+
+TC-04 | Experience level donut chart loads correctly
+       Expected : All experience levels visible (Entry, Mid-Senior, Director etc.)
+       Result   : [~ ] Pass  [ ] Fail
+       Notes    :
+
+TC-05 | Top locations bar chart shows 15 locations
+       Expected : 15 locations sorted by posting count descending
+       Result   : [ ~] Pass  [ ] Fail
+       Notes    :
+
+
+PAGE 2 — SKILLS ANALYSIS
+-------------------------
+TC-06 | Skill frequency bar chart displays all 35 skills
+       Expected : 35 skills visible, sorted by mention count descending
+       Result   : [~ ] Pass  [ ] Fail
+       Notes    :
+
+TC-07 | Skill mention % chart values are between 0-100
+       Expected : No skill exceeds 100%, values are percentages of total postings
+       Result   : [~ ] Pass  [ ] Fail
+       Notes    :
+
+TC-08 | SHAP importance chart shows correct top skill
+       Expected : remote_flag appears as #1 bar (highest mean_shap = 0.130)
+       Result   : [ ~] Pass  [ ] Fail
+       Notes    :
+
+TC-09 | Note text box is visible and readable
+       Expected : Disclaimer text explaining difference between frequency vs SHAP visible
+       Result   : [ ~] Pass  [ ] Fail
+       Notes    :
+
+
+PAGE 3 — AI INSIGHTS
+---------------------
+TC-10 | Multi-row card displays all 8 metrics
+       Expected : All 8 rows visible — Total Jobs, Accuracy, AUC-ROC etc.
+       Result   : [ ] Pass  [~] Fail
+       Notes    :
+
+TC-11 | Executive summary text is fully visible
+       Expected : Full AI-generated summary readable, no text cut off
+       Result   : [~ ] Pass  [ ] Fail
+       Notes    :
+
+TC-12 | SHAP bar image loads correctly
+       Expected : shap_bar.png displays clearly, labels readable
+       Result   : [~ ] Pass  [ ] Fail
+       Notes    :
+
+
+CROSS-PAGE TESTS
+----------------
+TC-13 | All 3 pages load without errors
+       Expected : No blank visuals, no error messages on any page
+       Result   : [ ~] Pass  [ ] Fail
+       Notes    :
+
+TC-14 | Dashboard file size is reasonable
+       Expected : .pbix file under 50MB
+       Result   : [~ ] Pass  [ ] Fail
+       Notes    :
+
+TC-15 | All page titles are correct
+       Expected : Page 1 = Market Overview, Page 2 = Skills Analysis, Page 3 = AI Insights
+       Result   : [~] Pass  [ ] Fail
+       Notes    :
+
+
+DEFECT LOG
+----------
+(Fill in if any test case fails)
+
+DEF-ID | TC-ID | Description                                                             | Severity        | Status
+-------|-------|-------------------------------------------------------------------------|-----------------|--------
+DEF-01 | TC-02 |monthly trend line doesn't display all months-data limitation            | High/Med/Low    | Open/Closed
+DEF-02 | TC-03 |remote vs onsite doesn't display the onsite segment                      | High/Med/Low    | Open/Closed
+DEF-03 | TC-10 |all 8 segments are not displayed; only 5 displayed                       | High/Med/Low    | Open/Closed
+ 
+
+UAT SIGN-OFF
+------------
+Total test cases  : 15
+Passed            : [ 12 ]
+Failed            : [ 03 ]
+Pass rate         : [ 75 ]%
+
+Tester sign-off   : Diya Gupta
+Date completed    : [06/02/2026]
+Dashboard status  : [ ] Approved for portfolio  [~ ] Pending fixes
+
+DEFECT LOG — UPDATED
+--------------------
+DEF-01 | TC-02 | Monthly trend shows 2 months only   | Low | Closed — Data Limitation
+        |       | Root cause: Source dataset (Kaggle) has 99.9% of rows with identical
+        |       | listed_time timestamp. Not a dashboard or code issue.
+        |       | Action: Added data quality note to dashboard page 1.
+
+DEF-02 | TC-03 | On-site segment missing from donut  | Medium | [status]
+DEF-03 | TC-10 | Multi-row card shows 5 of 8 metrics | Low    | [status]
+
+DEF-02 | TC-03 | On-site segment missing from donut  | Low | Closed — Data Limitation
+        |       | Root cause: Source dataset has no remote_allowed=0 values.
+        |       | Only Remote (15,246) and Not specified (108,603) exist.
+        |       | Donut chart correctly shows 2 segments — not a dashboard issue.
+
+UAT SIGN-OFF
+------------
+Total test cases : 15
+Passed           : 15
+Failed           : 0
+Pass rate        : 100%
+Defects found    : 3
+Defects closed   : 3 (2 data limitations, 1 export issue)
+
+Tester sign-off  : Diya Gupta
+Date completed   : June 2026
+Dashboard status : Approved for portfolio
+
+DEF-03 | TC-10 | Multi-row card shows 5 of 8 metrics | Low | Closed
+        |       | Root cause: model_metrics.csv saved with only 5 rows
+        |       | in a prior export step. Recreated with all 8 rows. Verified.
+
+UAT SIGN-OFF
+------------
+Total test cases : 15
+Passed           : 15
+Failed           : 0
+Pass rate        : 100%
+Defects found    : 3
+Defects closed   : 3 (2 data limitations, 1 export issue)
+
+Tester sign-off  : Diya Gupta
+Date completed   : June 2026
+Dashboard status : Approved for portfolio
