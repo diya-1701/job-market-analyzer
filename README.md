@@ -1,4 +1,3 @@
-# Job-Market-Analyzer
 # Job Market Analyzer — AI-Powered Portfolio Project
 
 **Author:** Diya Gupta | [LinkedIn](your-linkedin-url)  
