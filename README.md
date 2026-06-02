@@ -24,30 +24,6 @@ learning, NLP-based skill extraction, and AI-generated reporting.
 - **87% of postings** don't specify remote status — a gap given it's the #1 demand driver
 - ML model achieved **84% accuracy** and **0.697 AUC-ROC** on held-out test data
 
----
-
-## Project Structure
-job_market_analyzer/
-├── data/                        # Raw and processed data
-├── outputs/
-│   ├── charts/                  # 6 EDA visualizations
-│   ├── model/                   # ML model outputs + SHAP charts
-│   ├── summary/                 # AI-generated executive summary
-│   └── powerbi/                 # Power BI ready CSVs
-├── sql/
-│   └── 02_profiling_queries.sql # SQL profiling queries
-├── docs/
-│   └── BRD_template.md          # Business Requirements Document
-├── 01_load_data.py              # Load CSV into SQLite
-├── 03_eda_charts.py             # EDA visualizations
-├── 04_skill_extraction.py       # NLP skill extraction
-├── 05_ml_model.py               # Random Forest classifier
-├── 06_shap_analysis.py          # SHAP explainability
-├── 07_ai_summary.py             # LLM-powered executive summary
-├── UAT_test_plan.txt            # UAT documentation
-└── README.md
-
----
 
 ## Methodology
 
