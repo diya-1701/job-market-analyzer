@@ -1,6 +1,7 @@
 # Job Market Analyzer — AI-Powered Portfolio Project
 
-**Author:** Diya Gupta | [LinkedIn](https://www.linkedin.com/in/diyagupta17/) 
+**Author:** Diya Gupta | [LinkedIn](https://www.linkedin.com/in/diyagupta17/)  
+
 **Tools:** Python · SQL · scikit-learn · SHAP · Claude API · Power BI  
 **Dataset:** LinkedIn Job Postings 2023–2024 (Kaggle, 123,849 rows)
 
